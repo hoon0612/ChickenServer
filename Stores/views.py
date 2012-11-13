@@ -6,6 +6,14 @@ import json
 
 from django.forms import ModelForm
 
+class StoreForm(ModelForm):
+    class Meta:
+        model = Store
+
+class ReviewForm(ModelForm):
+    class Meta:
+        model = Review
+
 def store_list(request):
     store_list = Store.objects.all()
     
@@ -13,20 +21,16 @@ def store_list(request):
 
 def store_view(request, store_id):
 
-    print store_id
-
     store = Store.objects.get(pk=store_id)
     review_list = Review.objects.filter(store=store)
+    form = ReviewForm(initial = {"store": store_id })
     
     return render(request, "store_view.djhtml",
                   {"store": store,
                    "review_list": review_list,
-                   "store_id": store_id })
+                   "store_id": store_id,
+                   "comment_form": form})
 
-
-class StoreForm(ModelForm):
-    class Meta:
-        model = Store
 
 def store_register(request):
 
@@ -45,7 +49,15 @@ def store_register(request):
                   {"form": form})
 
 def review_register(request, store_id):
-    
-    return HttpResponseRedirect("/store_view/%d" %(store_id,))
 
+    if request.method == "POST":
+        form = ReviewForm(request.POST)
+        form.store = Store.objects.get(pk=int(store_id))
+
+        if form.is_valid():
+            form.save()
+
+    else:
+        form = ReviewForm()
     
+    return HttpResponseRedirect("/store_view/%s/" %(store_id,))

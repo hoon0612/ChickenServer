@@ -90,34 +90,16 @@
   {% endfor %}
 
   <div id="review_register">
-    <form method="POST" action="/review_register/{{ store_id }}" class="form-horizontal">
-      <div class="control-group">
-        <label class="control-label"> 작성자 </label>
-        <div class="controls">
-          <input class="input-xxlarge" type="text" id="writer" placeholder="Name" />
-        </div>
-      </div>
+    <form method="POST" action="/review_register/{{ store_id }}/" class="form-horizontal">
 
-      <div class="control-group">
-        <label class="control-label"> 평점 </label>
-        <div class="controls">
-          <input class="input-xxlarge" type="text" id="score" placeholder="Score" />
-        </div>
-      </div>
-
-      <div class="control-group">
-        <label class="control-label"> 리뷰 </label>
-        <div class="controls">
-          <textarea class="input-xxlarge" rows="3" id="review" placeholder="Review"> </textarea>
-        </div>
-      </div>
-
+      {{ comment_form }}
+      
       <div class="control-group">
         <div class="controls">
           <input class="btn btn-primary btn-large" type="submit" value="등록"/> 
         </div>
       </div>
-            
+      
 
             
     </form>
