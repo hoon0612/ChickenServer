@@ -2,9 +2,10 @@
 
 import os
 
-SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
+SITE_ROOT = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..')
 
 DEBUG = True
+COMPRESS_ENABLED = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -49,7 +50,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = os.path.join(os.path.join(SITE_ROOT,'..'), 'upload')
+MEDIA_ROOT = os.path.join(SITE_ROOT,'upload')
 
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
@@ -69,8 +70,8 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    os.path.join(os.path.join(SITE_ROOT,'..'), 'statics'),
-    os.path.join(os.path.join(SITE_ROOT,'..'), 'upload'),
+    os.path.join(SITE_ROOT, 'statics'),
+    os.path.join(SITE_ROOT, 'upload'),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -110,6 +111,8 @@ ROOT_URLCONF = 'ChickenServer.urls'
 WSGI_APPLICATION = 'ChickenServer.wsgi.application'
 
 TEMPLATE_DIRS = (
+    os.path.join(SITE_ROOT, 'templates'),
+    
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -122,6 +125,10 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'compressor',
+    
+    'Stores',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
@@ -156,3 +163,7 @@ LOGGING = {
         },
     }
 }
+
+COMPRESS_PRECOMPILERS = (
+    ('text/coffeescript', 'coffee --compile --stdio'),
+)
