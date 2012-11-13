@@ -39,6 +39,8 @@ class Review(models.Model):
     # date
     score = models.PositiveSmallIntegerField(null=True, default=0)
     # score
+    writer = models.CharField(max_length=30, null=False)
+    # writer
     comment = models.TextField(null=False)
     # comment (review)
     review_image = models.ImageField(upload_to="review_image", null=True, blank=True)
