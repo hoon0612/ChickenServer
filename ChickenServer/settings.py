@@ -1,5 +1,9 @@
 # Django settings for ChickenServer project.
 
+import os
+
+SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -45,7 +49,8 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.join(os.path.join(SITE_ROOT,'..'), 'upload')
+
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -64,6 +69,8 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
+    os.path.join(os.path.join(SITE_ROOT,'..'), 'statics'),
+    os.path.join(os.path.join(SITE_ROOT,'..'), 'upload'),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
