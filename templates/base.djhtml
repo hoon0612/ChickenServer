@@ -16,7 +16,22 @@
   </head>
 
   <body>
-    {% block contents %}
-    {% endblock %}
+    
+    <div class="container">
+
+      <div class="navbar">
+        <div class="navbar-inner">
+          <a class="brand" href="/">Chicken Server Web Ver.</a>
+          <ul class="nav">
+            <li><a href="/store_list/"> Store List </a></li>
+            <li><a href="/store_register/"> Register </a></li>
+          </ul>
+        </div>
+      </div>
+      
+      {% block contents %}
+      
+      {% endblock %}
+    </div>
   </body>
 </html>
