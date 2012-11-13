@@ -1,0 +1,67 @@
+.review_head_wrap {
+   margin-top: 20px;
+   padding-right: 2px;
+   background: #F6F6F6 url(http://imgnews.naver.com/image/comment/pc/img/sp_comment_b020419.png) no-repeat 100% 0;
+   zoom: 1;   
+}
+
+.review_head {
+
+   background: url(http://imgnews.naver.com/image/comment/pc/img/sp_comment_b020419.png) no-repeat;
+   height: 26px;
+   padding: 5px 0 0 9px;
+   display:block;
+}
+
+.main_img {
+   width: 400px;
+}
+
+#reviews {
+   margin-top: 40px;
+
+}
+
+.review_score > span {
+   padding-left: 20px;
+}
+
+.review_writer {
+   float: left;
+}
+
+.review_starts {
+   float: left;
+}
+
+.review_contents {
+   padding: 20px;
+}
+
+.review_image {
+   width: 150px;
+   height: 150px;
+   float:right;
+   display: inline;
+}
+
+.cb {
+   clear:both;
+}
+
+#store_info, #images  {
+   padding-bottom: 9px;
+   margin: 10px 0 10px;
+   border-bottom: 1px solid #EEE;
+}
+
+#review_register > form{
+   margin-left : -30px;
+}
+
+#review_register {
+   background-color: #F5F5F5;
+   padding: 20px;
+   margin-bottom: 30px;
+   border: solid 1px #CCC;
+}

@@ -1,0 +1,131 @@
+{% extends "base.djhtml" %}
+
+{% block contents %}
+
+<div class="page-header">
+  <h1> {{ store.name }}  <small> {{ store.category }} </small> </h1>
+</div>
+
+<div id="store_info">
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th> 항목 </td>
+        <th> 내용 </th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <tr>
+        <td> 위치 </td>
+        <td> ( {{ store.locationX }} , {{ store.locationY }} ) </td>
+      </tr>
+
+      <tr>
+        <td> 주소 </td>
+        <td> {{ store.address }} </td>
+      </tr>
+
+      <tr>
+        <td> 영업시간 </td>
+        <td> {{store.open_at}}시 ~ {{store.close_at }}시 </td>
+      </tr>
+
+      <tr>
+        <td> 전화번호 </td>
+        <td> {{store.phone}} </td>
+      </tr>
+      
+      <tr>
+        <td> 최대 좌석수 </td>
+        <td> {{store.max_seats}} </td>
+      </tr>
+
+      <tr>
+        <td> 메인이미지 </td>
+        <td> <img class="main_img thumbnail" src="{{STATIC_URL}}{{store.main_image}}" /> </td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+</div>
+
+<div id="images">
+  <h2> Images </h2>
+
+</div>
+
+<div id="reviews">
+  <h2> Comments </h2>
+
+  {% for review in review_list %}
+
+  <div class="review_head_wrap">
+    <div class="review_head">
+      <div class="review_writer">
+        <i class="icon-user"> </i>
+        {{ review.writer }}
+      </div>
+
+      <div class="review_score">
+        <span> ( 평점 : {{ review.score }} 점 ) </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="review_contents">
+    <i class="icon-comment"> </i>
+    {{ review.comment }}
+
+    {% if review.review_image %}
+    <img class="thumbnail review_image" src="/static/{{ review.review_image }}" />
+    {% endif %}
+    
+    <div class="cb"> </div>
+    
+  </div>
+
+  {% endfor %}
+
+  <div id="review_register">
+    <form method="POST" action="/review_register/{{ store_id }}" class="form-horizontal">
+      <div class="control-group">
+        <label class="control-label"> 작성자 </label>
+        <div class="controls">
+          <input class="input-xxlarge" type="text" id="writer" placeholder="Name" />
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label"> 평점 </label>
+        <div class="controls">
+          <input class="input-xxlarge" type="text" id="score" placeholder="Score" />
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label"> 리뷰 </label>
+        <div class="controls">
+          <textarea class="input-xxlarge" rows="3" id="review" placeholder="Review"> </textarea>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="controls">
+          <input class="btn btn-primary btn-large" type="submit" value="등록"/> 
+        </div>
+      </div>
+            
+
+            
+    </form>
+  </div>
+  
+  
+
+</div>
+
+
+{% endblock %}

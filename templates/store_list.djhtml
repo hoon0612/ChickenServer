@@ -1,0 +1,34 @@
+{% extends "base.djhtml" %}
+
+{% block contents %}
+
+<div class="page-header">
+  <h1> Store <small> List </small> </h1>
+</div>
+
+
+<table class="table table-bordered">
+
+<thead>
+  <tr>
+    <th> # </th>
+    <th> 상점이름 </th>
+    <th> 리플수 </th>
+  </tr>
+</thead>
+
+{% for store in store_list %}
+
+<tbody>
+  <tr>
+    <td> {{ store.pk }} </td>
+    <td> <a href="/store_view/{{store.pk}}"> {{ store.name }} </td>
+    <td> 0 </td>
+  </tr>
+</tbody>
+  
+{% endfor %}
+
+</table>
+
+{% endblock %}
