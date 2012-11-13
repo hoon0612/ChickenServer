@@ -24,7 +24,7 @@ class Store(models.Model):
     # business hour to
     max_seats = models.IntegerField(null=False, default=0)
     # max capacity
-    available_seats = models.IntegerField(null=True)
+    available_seats = models.IntegerField(null=True, blank=True)
     # (+) available seats
     registered_at = models.DateTimeField(auto_now_add=True)
     # registered date (auto)
