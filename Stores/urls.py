@@ -7,5 +7,6 @@ urlpatterns = patterns('',
     url(r'^store_list/$', 'Stores.views.store_list'),
     url(r'^store_view/(?P<store_id>\d+)/$', 'Stores.views.store_view'),
     url(r'^store_register/$', 'Stores.views.store_register'),
+    url(r'^category_register/$', 'Stores.views.category_register'),
     url(r'^review_register/(?P<store_id>\d+)/$', 'Stores.views.review_register'),
 )

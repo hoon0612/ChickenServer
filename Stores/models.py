@@ -2,12 +2,18 @@ from django.db import models
 
 # Create your models here.
 
+class Category(models.Model):
+    name = models.CharField(max_length=20, null=False, blank=False, unique=True)
+
+    def __unicode__ (self):
+        return self.name
+
 class Store(models.Model):
 
     name = models.CharField(max_length=50, null=False)
     # store name
 
-    category = models.CharField(max_length=20, null=True, blank=True)
+    category = models.ManyToManyField(Category)
     # category ( meal / alcohol)
     locationX = models.FloatField(null=False, default=0.0, blank=True)
     locationY = models.FloatField(null=False, default=0.0, blank=True)
@@ -31,7 +37,7 @@ class Store(models.Model):
 
     def __unicode__ (self):
         return self.name
-    
+
 class Review(models.Model):
     store = models.ForeignKey(Store, null=False)
     # foreign key pointing store

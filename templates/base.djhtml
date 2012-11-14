@@ -28,7 +28,8 @@
           <a class="brand" href="/">Chicken Server Web Ver.</a>
           <ul class="nav">
             <li><a href="/store_list/"> Store List </a></li>
-            <li><a href="/store_register/"> Register </a></li>
+            <li><a href="/store_register/"> Store Register </a></li>
+            <li><a href="/category_register/"> Category Register </a></li>
           </ul>
         </div>
       </div>

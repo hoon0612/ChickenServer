@@ -10,9 +10,14 @@ class StoreForm(ModelForm):
     class Meta:
         model = Store
 
+class CategoryForm(ModelForm):
+    class Meta:
+        model = Category
+
 class ReviewForm(ModelForm):
     class Meta:
         model = Review
+        exclude = ('store',)
 
 def store_list(request):
     store_list = Store.objects.all()
@@ -42,8 +47,12 @@ def store_register(request):
 
             return HttpResponseRedirect("/")
     else:
-        
         form = StoreForm()
+
+    keys = form.fields.keys()
+
+    for key in keys:
+        form.fields[key].widget.attrs = {'class':'span6'}
     
     return render(request, "store_register.djhtml",
                   {"form": form})
@@ -53,11 +62,26 @@ def review_register(request, store_id):
     if request.method == "POST":
         form = ReviewForm(request.POST)
         form.store = Store.objects.get(pk=int(store_id))
-
+        
         if form.is_valid():
             form.save()
-
     else:
         form = ReviewForm()
     
     return HttpResponseRedirect("/store_view/%s/" %(store_id,))
+
+def category_register(request):
+
+    if request.method == "POST":
+        form = CategoryForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            
+            return HttpResponseRedirect("/")
+        
+    else:
+        form = CategoryForm()
+        
+    return render(request, "category_register.djhtml",
+                  {"form": form})

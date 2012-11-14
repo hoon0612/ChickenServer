@@ -5,7 +5,7 @@
 {% block contents %}
 
 <div class="page-header">
-  <h1> Store <small> registration </small> </h1>
+  <h1> Category <small> registration </small> </h1>
 </div>
 
 <form class="form-horizontal" method="POST" action=".">
