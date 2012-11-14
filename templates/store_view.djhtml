@@ -1,5 +1,7 @@
 {% extends "base.djhtml" %}
 
+{% load bootstrap_toolkit %}
+
 {% block contents %}
 
 <div class="page-header">
@@ -92,7 +94,7 @@
   <div id="review_register">
     <form method="POST" action="/review_register/{{ store_id }}/" class="form-horizontal">
 
-      {{ comment_form }}
+      {{ comment_form|as_bootstrap }}
       
       <div class="control-group">
         <div class="controls">

@@ -1,12 +1,21 @@
 {% extends "base.djhtml" %}
 
+{% load bootstrap_toolkit %}
+
 {% block contents %}
 
-<form method="POST" action=".">
+<form class="form-horizontal" method="POST" action=".">
 
-{{ form }}
+{{ form|as_bootstrap}}
 
-<input type="submit" class="btn btn-primary" />
+<div class="actions">
+
+  <div class="control-group">
+    <div class="controls">
+      <input type="submit" class="btn btn-primary btn-large" />
+    </div>
+  </div>
+</div>
 
 </form>
 

@@ -128,6 +128,7 @@ INSTALLED_APPS = (
 
     'compressor',
     'crispy_forms',
+    'bootstrap_toolkit',
     
     'Stores',
     
