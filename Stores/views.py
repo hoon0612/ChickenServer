@@ -29,6 +29,9 @@ def store_view(request, store_id):
     store = Store.objects.get(pk=store_id)
     review_list = Review.objects.filter(store=store)
     form = ReviewForm(initial = {"store": store_id })
+
+    for ct in store.category.all():
+        print ct.name
     
     return render(request, "store_view.djhtml",
                   {"store": store,
@@ -72,16 +75,17 @@ def review_register(request, store_id):
 
 def category_register(request):
 
+    category_list = Category.objects.all()
+
     if request.method == "POST":
         form = CategoryForm(request.POST)
 
         if form.is_valid():
             form.save()
             
-            return HttpResponseRedirect("/")
-        
     else:
         form = CategoryForm()
         
     return render(request, "category_register.djhtml",
-                  {"form": form})
+                  {"category_list": category_list,
+                   "form": form})
