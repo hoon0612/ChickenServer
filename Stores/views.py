@@ -33,6 +33,21 @@ def store_list_json(request):
 
     return HttpResponse(data)
 
+def store_list_jsonp(request):
+
+    if request.method == "GET" and request.GET.has_key(u'callback'):
+
+        callback = request.GET[u'callback']
+        store_list = Store.objects.all()
+        data       = serializers.serialize("json", store_list)
+
+        jsonp = callback + "(" +  data + ");"
+        
+        return HttpResponse(jsonp)
+    else:
+        return HttpResponse('-1')
+
+
 def store_view(request, store_id):
 
     store = Store.objects.get(pk=store_id)
