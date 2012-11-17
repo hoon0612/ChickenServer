@@ -8,7 +8,7 @@
   <h1> Store <small> registration </small> </h1>
 </div>
 
-<form class="form-horizontal" method="POST" action=".">
+<form class="form-horizontal" method="POST" action="." enctype="multipart/form-data">
 
 {{ form|as_bootstrap}}
 

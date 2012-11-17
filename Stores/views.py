@@ -70,7 +70,7 @@ def store_register(request):
 def review_register(request, store_id):
 
     if request.method == "POST":
-        form = ReviewForm(request.POST)
+        form = ReviewForm(request.POST, request.FILES)
         form.store = Store.objects.get(pk=int(store_id))
         
         if form.is_valid():
@@ -80,12 +80,12 @@ def review_register(request, store_id):
     
     return HttpResponseRedirect("/store_view/%s/" %(store_id,))
 
-def category_register(request):
+def category(request):
 
     category_list = Category.objects.all()
 
     if request.method == "POST":
-        form = CategoryForm(request.POST)
+        form = CategoryForm(request.POST, request.FILES)
 
         if form.is_valid():
             form.save()

@@ -18,7 +18,7 @@
   
 </div>
 
-<form class="well form-horizontal" method="POST" action=".">
+<form class="well form-horizontal" method="POST" action="." >
 
 {{ form|as_bootstrap}}
 
