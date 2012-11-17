@@ -5,6 +5,7 @@ from Stores.models import *
 import json
 
 from django.forms import ModelForm
+from django.core import serializers
 
 class StoreForm(ModelForm):
     class Meta:
@@ -23,6 +24,12 @@ def store_list(request):
     store_list = Store.objects.all()
     
     return render(request, "store_list.djhtml", {"store_list": store_list})
+
+def store_list_json(request):
+    store_list = Store.objects.all()
+    data       = serializers.serialize("json", store_list)    
+
+    return HttpResponse(data)
 
 def store_view(request, store_id):
 
@@ -43,7 +50,7 @@ def store_view(request, store_id):
 def store_register(request):
 
     if request.method == "POST":
-        form = StoreForm(request.POST)
+        form = StoreForm(request.POST, request.FILES)
 
         if form.is_valid():
             form.save()
