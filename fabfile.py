@@ -6,4 +6,5 @@ def deploy():
     run('rm -rf /var/www/ChickenServer')
     run('cp -R /var/www/ChickenServer.git /var/www/ChickenServer')
     run('mv /var/www/ChickenServer/ChickenServer/settings.deploy.py /var/www/ChickenServer/ChickenServer/settings.py')
+    run('printf "yes\\n" | /var/www/ChickenServer/manage.py collectstatic')
     run('service apache2 restart')
