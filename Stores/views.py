@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # Create your views here.
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
@@ -37,9 +39,6 @@ def store_view(request, store_id):
     review_list = Review.objects.filter(store=store)
     form = ReviewForm(initial = {"store": store_id })
 
-    for ct in store.category.all():
-        print ct.name
-    
     return render(request, "store_view.djhtml",
                   {"store": store,
                    "review_list": review_list,
