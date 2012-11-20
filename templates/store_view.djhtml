@@ -98,7 +98,7 @@
   {% endfor %}
 
   <div id="review_register">
-    <form method="POST" action="/review_register/{{ store_id }}/" class="form-horizontal">
+    <form method="POST" action="/review_register/{{ store_id }}/" class="form-horizontal" enctype="multipart/form-data">
 
       {{ comment_form|as_bootstrap }}
       

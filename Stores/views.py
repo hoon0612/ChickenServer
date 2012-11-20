@@ -20,7 +20,7 @@ class CategoryForm(ModelForm):
 class ReviewForm(ModelForm):
     class Meta:
         model = Review
-        exclude = ('store',)
+#        exclude = ('store',)
 
 def store_list(request):
     store_list = Store.objects.all()
@@ -48,12 +48,19 @@ def store_list_jsonp(request):
     else:
         return HttpResponse('-1')
 
+def store_detail_jsonp(request):
+    if request.method == "GET" and request.GET.has_key(u'pk'):
+        pass
+    else:
+        return HttpResponse('-1')
+
 
 def store_view(request, store_id):
 
     store = Store.objects.get(pk=store_id)
     review_list = Review.objects.filter(store=store)
-    form = ReviewForm(initial = {"store": store_id })
+
+    form = ReviewForm(initial = {"store": int(store_id) })
 
     return render(request, "store_view.djhtml",
                   {"store": store,
@@ -85,13 +92,14 @@ def store_register(request):
 def review_register(request, store_id):
 
     if request.method == "POST":
-        form = ReviewForm(request.POST, request.FILES)
-        form.store = Store.objects.get(pk=int(store_id))
+
+        form = ReviewForm(request.POST, request.FILES,
+                          initial = {"store": int(store_id) })
+#        form.store = Store.objects.get(pk=int(store_id))
+        form.store = int(store_id)
         
         if form.is_valid():
             form.save()
-    else:
-        form = ReviewForm()
     
     return HttpResponseRedirect("/store_view/%s/" %(store_id,))
 
