@@ -42,6 +42,11 @@ def store_list_jsonp(request):
         
         store_list = Store.objects.all()
 
+        if request.GET.has_key(u'category'):
+            category = int(request.GET['category'])
+
+            #store_list = store_list.filter(category__in=
+
         if request.GET.has_key(u'x') and request.GET.has_key(u'y'):
             (x, y) = (request.GET[u'x'],request.GET[u'y'])
 
