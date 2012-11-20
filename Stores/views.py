@@ -39,8 +39,23 @@ def store_list_jsonp(request):
     if request.method == "GET" and request.GET.has_key(u'callback'):
 
         callback = request.GET[u'callback']
+        
         store_list = Store.objects.all()
-        data       = serializers.serialize("json", store_list, fields=('pk','locationX', 'locationY', 'name'))
+
+        if request.GET.has_key(u'x') and request.GET.has_key(u'y'):
+            (x, y) = (request.GET[u'x'],request.GET[u'y'])
+
+            store_list2 = []
+            
+            for store in store_list:
+                (x2,y2)=(store.locationX,store.locationY)
+                dist = ((x-x2)**2 + (y-y2)**2) ** 0.5
+                store_list2 += [(dist, store)]
+
+            store_list2.sort()
+            store_list = store_list2
+        
+        data = serializers.serialize("json", store_list[:min(5, len(store_list))] )
 
         jsonp = callback + "(" +  data + ");"
         
