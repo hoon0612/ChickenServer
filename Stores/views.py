@@ -136,12 +136,12 @@ def geocode(request):
     
         ret = urllib.urlopen(url).read()
 
-        iterator = re.finditer(r"<x>(\d+)</x>",ret, re.DOTALL)
+        iterator = re.finditer(r"<x>([\d\.]+)</x>",ret, re.DOTALL)
         x = [k.group(1) for k in iterator]
 
         if len(x) < 1:
             return HttpResponse("-2")
-        iterator = re.finditer(r"<y>(\d+)</y>",ret, re.DOTALL)
+        iterator = re.finditer(r"<y>([\d\.]+)</y>",ret, re.DOTALL)
         y = [k.group(1) for k in iterator]
 
         return HttpResponse(x[0] + "/" + y[0])
