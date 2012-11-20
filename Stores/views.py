@@ -132,7 +132,7 @@ def geocode(request):
 
         import urllib, re
 
-        url = 'http://openapi.map.naver.com/api/geocode.php?key=f4d26c0529617faf266e90673fca3d8d&query=' + request.GET[u'addr'].encode('utf-8')
+        url = 'http://openapi.map.naver.com/api/geocode.php?key=f4d26c0529617faf266e90673fca3d8d&coord=LatLng&query=' + request.GET[u'addr'].encode('utf-8')
     
         ret = urllib.urlopen(url).read()
 
