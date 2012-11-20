@@ -49,8 +49,14 @@ def store_list_jsonp(request):
         return HttpResponse('-1')
 
 def store_detail_jsonp(request):
-    if request.method == "GET" and request.GET.has_key(u'pk'):
-        pass
+    if request.method == "GET" and request.GET.has_key(u'pk') and request.GET.has_key(u'callback'):
+        callback = request.GET[u'callback']
+        store_list = Store.objects.filter(pk=int(request.GET[u'pk']))
+        data = serializers.serialize("json", store_list)
+        
+        jsonp = callback + "(" +  data + ");"
+        
+        return HttpResponse(jsonp)
     else:
         return HttpResponse('-1')
 
