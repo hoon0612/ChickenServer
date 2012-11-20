@@ -43,7 +43,7 @@ def store_list_jsonp(request):
         store_list = Store.objects.all()
 
         if request.GET.has_key(u'category'):
-            category = int(request.GET['category'])
+            category = request.GET['category']
 
             #store_list = store_list.filter(category__in=
 
