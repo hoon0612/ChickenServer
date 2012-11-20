@@ -29,7 +29,8 @@ def store_list(request):
 
 def store_list_json(request):
     store_list = Store.objects.all()
-    data       = serializers.serialize("json", store_list)    
+    data       = serializers.serialize("json", store_list,
+                                       fields=('pk','locationX', 'locationY', 'name'))    
 
     return HttpResponse(data)
 
@@ -39,7 +40,7 @@ def store_list_jsonp(request):
 
         callback = request.GET[u'callback']
         store_list = Store.objects.all()
-        data       = serializers.serialize("json", store_list)
+        data       = serializers.serialize("json", store_list, fields=('pk','locationX', 'locationY', 'name'))
 
         jsonp = callback + "(" +  data + ");"
         
