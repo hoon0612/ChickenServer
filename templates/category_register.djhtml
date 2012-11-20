@@ -13,7 +13,13 @@
   </thead>
   <tbody>
     {% for category in category_list %}
-    <tr> <td> {{ category.name }} <a href="#"> <i class="icon-trash"> </i>  </a> </td> </tr>
+    <tr> <td>
+      {{ category.name }}
+      <a href="/rm_category/{{ category.pk }}">
+        <i class="icon-trash"> </i>
+      </a>
+    </td></tr>
+    
     {% endfor %}
   </tbody>
 </table>

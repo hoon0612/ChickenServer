@@ -110,3 +110,26 @@ def category(request):
     return render(request, "category_register.djhtml",
                   {"category_list": category_list,
                    "form": form})
+
+def geocode(request):
+
+    if request.method == "GET" and request.GET.has_key(u'addr'):
+
+        import urllib, re
+
+        url = 'http://openapi.map.naver.com/api/geocode.php?key=f4d26c0529617faf266e90673fca3d8d&query=' + request.GET[u'addr'].encode('utf-8')
+    
+        ret = urllib.urlopen(url).read()
+
+        iterator = re.finditer(r"<x>(\d+)</x>",ret, re.DOTALL)
+        x = [k.group(1) for k in iterator]
+
+        if len(x) < 1:
+            return HttpResponse("-2")
+        iterator = re.finditer(r"<y>(\d+)</y>",ret, re.DOTALL)
+        y = [k.group(1) for k in iterator]
+
+        return HttpResponse(x[0] + "/" + y[0])
+    else:
+        return HttpResponse("-1")
+    
